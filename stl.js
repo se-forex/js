@@ -38,14 +38,17 @@ function init() {
     // ASCII file
 
     var loader = new THREE.STLLoader();
-    loader.load( 'threejs/examples/models/stl/ascii/slotted_disk.stl', function ( geometry ) {
+    // loader.load( 'threejs/examples/models/stl/ascii/slotted_disk.stl', function ( geometry ) {
+    loader.load( 'stl_models/files/Bottom.STL', function ( geometry ) {
 
-        var material = new THREE.MeshPhongMaterial( { color: 0xfff, specular: 0x111111, shininess: 200 } );
+        var material = new THREE.MeshPhongMaterial( { color: 0xf2ff544, specular: 0x111111, shininess: 200 } );
         var mesh = new THREE.Mesh( geometry, material );
 
-        mesh.position.set( 0, - 0.25, 0.6 );
-        mesh.rotation.set( 0, - Math.PI / 2, 0 );
-        mesh.scale.set( 0.5, 0.5, 0.5 );
+        //mesh.position.set( 0, - 0.25, 0.6 );
+        //mesh.rotation.set( 0, - Math.PI / 2, 0 );
+        mesh.position.set( 0, - 0.415, 0 );       
+        mesh.rotation.set( Math.PI / 2, 0, 0);
+        mesh.scale.set( 0.005, 0.005, 0.005 );
 
         mesh.castShadow = true;
         mesh.receiveShadow = true;
@@ -54,18 +57,16 @@ function init() {
 
     } );
 
+    loader.load( 'stl_models/files/Original_Top.STL', function ( geometry ) {
 
-    // Binary files
-
-    var material = new THREE.MeshPhongMaterial( { color: 0xAAAAAA, specular: 0x111111, shininess: 200 } );
-
-    loader.load( 'threejs/examples/models/stl/binary/pr2_head_pan.stl', function ( geometry ) {
-
+        var material = new THREE.MeshPhongMaterial( { color: 0xf2ff544, specular: 0x111111, shininess: 200 } );
         var mesh = new THREE.Mesh( geometry, material );
 
-        mesh.position.set( 0, - 0.37, - 0.6 );
-        mesh.rotation.set( - Math.PI / 2, 0, 0 );
-        mesh.scale.set( 2, 2, 2 );
+        //mesh.position.set( 0, - 0.25, 0.6 );
+        //mesh.rotation.set( 0, - Math.PI / 2, 0 );
+        mesh.position.set( 0.32, - 0.43, 0 );       
+        mesh.rotation.set( Math.PI / 2, Math.PI, 0);
+        mesh.scale.set( 0.005, 0.005, 0.005 );
 
         mesh.castShadow = true;
         mesh.receiveShadow = true;
@@ -74,13 +75,16 @@ function init() {
 
     } );
 
-    loader.load( 'threejs/examples/models/stl/binary/pr2_head_tilt.stl', function ( geometry ) {
+    loader.load( 'stl_models/files/Head.STL', function ( geometry ) {
 
+        var material = new THREE.MeshPhongMaterial( { color: 0xf2ff544, specular: 0x111111, shininess: 200 } );
         var mesh = new THREE.Mesh( geometry, material );
 
-        mesh.position.set( 0.136, - 0.37, - 0.6 );
-        mesh.rotation.set( - Math.PI / 2, 0.3, 0 );
-        mesh.scale.set( 2, 2, 2 );
+        //mesh.position.set( 0, - 0.25, 0.6 );
+        //mesh.rotation.set( 0, - Math.PI / 2, 0 );
+        mesh.position.set( 0.2, - 0.45, - 0.033 );       
+        mesh.rotation.set( Math.PI / 2, Math.PI, 0);
+        mesh.scale.set( 0.005, 0.005, 0.005 );
 
         mesh.castShadow = true;
         mesh.receiveShadow = true;
@@ -88,28 +92,6 @@ function init() {
         scene.add( mesh );
 
     } );
-
-    // Colored binary STL
-    loader.load( 'threejs/examples/models/stl/binary/colored.stl', function ( geometry ) {
-
-        var meshMaterial = material;
-        if (geometry.hasColors) {
-            meshMaterial = new THREE.MeshPhongMaterial({ opacity: geometry.alpha, vertexColors: THREE.VertexColors });
-        }
-
-        var mesh = new THREE.Mesh( geometry, meshMaterial );
-
-        mesh.position.set( 0.5, 0.2, 0 );
-        mesh.rotation.set( - Math.PI / 2, Math.PI / 2, 0 );
-        mesh.scale.set( 0.3, 0.3, 0.3 );
-
-        mesh.castShadow = true;
-        mesh.receiveShadow = true;
-
-        scene.add( mesh );
-
-    } );
-
 
     // Lights
 
@@ -185,7 +167,7 @@ function animate() {
 
 function render() {
 
-    var timer = Date.now() * 0.00005;
+    var timer = Date.now() * 0.0005;
 
     camera.position.x = Math.cos( timer ) * 3;
     camera.position.z = Math.sin( timer ) * 3;
